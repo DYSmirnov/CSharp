@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System; 
 
 namespace Exercise3
 {
@@ -14,23 +14,36 @@ namespace Exercise3
             points[4] = GetPointFromUser("E");
 
             double AB = CalcLineLength(points[0], points[1]);
-            //another 6 lines
+            double BE = CalcLineLength(points[1], points[4]);
+            double AE = CalcLineLength(points[0], points[4]);
+            double AC = CalcLineLength(points[0], points[2]);
+            double BC = CalcLineLength(points[1], points[2]);
+            double CD = CalcLineLength(points[2], points[3]);
+            double AD = CalcLineLength(points[0], points[3]);
 
+            double ABE = CalcTriangleArea(AB, BE, AE);
             double ABC = CalcTriangleArea(AB, BC, AC);
-            // another 2 triangles
+            double ACD = CalcTriangleArea(AC, CD, AD);
 
-            double totalArea = ABC + ACD + ADE;
-
+            double totalArea = ABE + ABC + ACD;
+            Console.WriteLine($"the area of the pentagon {totalArea}");
+            Console.WriteLine($"the area of the triangle ABE {ABE}");
+            Console.WriteLine($"the area of the triangle ABC {ABC}");
+            Console.WriteLine($"the area of the triangle ACD {ACD}");
         }
 
         static double CalcTriangleArea(double side1, double side2, double side3)
         {
-            // Formula of Heron
+            double p = (side1 + side2 + side3) / 2;
+            double s = Math.Sqrt(p * (p - side1) * (p - side2) * (p - side3));
+            return s;
+
         }
 
         static double CalcLineLength(Point point1, Point point2)
         {
-            // Distance between points.
+            double otrezok = Math.Sqrt(Math.Pow((point1.X - point2.X), 2) + Math.Pow((point1.Y - point2.Y), 2));
+            return otrezok;
         }
 
         static Point GetPointFromUser(string pointName)
