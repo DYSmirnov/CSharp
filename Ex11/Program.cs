@@ -6,11 +6,20 @@ namespace Ex11
     {
         static void Main(string[] args)
         {
+
             Vector v = new Vector();
-                v.Append(-5);
-                v.Append(4.8);
+            Vector v1 = new Vector();
+            v.Append(5);
+            v.Append(4.8);
             v.Append(100);
-            Console.WriteLine(v);
+            v1.Append(5);
+            v1.Append(4.8);
+            v1.Append(100);
+            Vector v2 = new Vector();
+            v2 = v1.Divide(2);
+            Console.WriteLine(v1);
+            Console.WriteLine(v2);
+            Console.WriteLine(v.GetElementAt(2));
         }
     }
 }

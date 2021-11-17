@@ -23,14 +23,17 @@ namespace Ex11
 
         public void Append(double new_value)
         {
-            double[] new_values = new double[values.Length + 1];
-            for (int i = 0; i< values.Length; i++)
-            {
-                new_values[i] = values[i];
+                double[] new_values = new double[values.Length + 1];
+            if (values.Length == 0) { new_values[0] = new_value; }
+            else {
+                for (int i = 0; i < values.Length; i++)
+                {
+                    new_values[i] = values[i];
+                }
+                new_values[values.Length] = new_value;
+                 }
+             values = new_values;
             }
-            new_values[values.Length + 1] = new_value;
-            values = new_values;
-        }
 
         public int GetSize() { return values.Length; }
 
@@ -40,23 +43,54 @@ namespace Ex11
             return values[index];
         }
 
-        // написать SetElement
-
-        //public Vector Add (Vector other)
+        //public void SetElement(int index)
         //{
-        //    if (values.Length != other.GetSize()) { throw new Exception("Vectors have diffrent sizes")}
-        //    Vector resultVector = new Vector(values.Length);
-        //    for (int i = 0; i < values.Length; i++)
-        //    {
-        //        resultVector.SetElement(i) = values[i] + other.GetElementAt;
-        //    }
+        //    values [index] = 
         //}
+
+        public Vector Sum(Vector other)
+        {
+            if (values.Length != other.GetSize()) { throw new Exception("Vectors have diffrent sizes"); }
+            Vector resultVector = new Vector ();
+            for (int i = 0; i < values.Length; i++)
+            {
+                resultVector.Append(values[i] + other.GetElementAt(i));
+            }
+            return resultVector;
+        }
+        public Vector Diff(Vector other)
+        {
+            if (values.Length != other.GetSize()) { throw new Exception("Vectors have diffrent sizes"); }
+            Vector resultVector = new Vector();
+            for (int i = 0; i < values.Length; i++)
+            {
+                resultVector.Append(values[i] - other.GetElementAt(i));
+            }
+            return resultVector;
+        }
 
         //add Substract
 
-        // public Vector Multiply( double scalarValue) { }
+        public Vector Multiply( double scalarValue) 
+        {  
+            Vector resultVector = new Vector();
+            for (int i = 0; i < values.Length; i++)
+            {
+                resultVector.Append(values[i]* scalarValue);
+            }
+            return resultVector;
+        }
 
-        //add Divide
+        public Vector Divide(double scalarValue)
+        {
+            if (scalarValue == 0) { throw new Exception("divided by zero"); }
+            Vector resultVector = new Vector();
+            for (int i = 0; i < values.Length; i++)
+            {
+                resultVector.Append(values[i] / scalarValue);
+            }
+            return resultVector;
+        }
 
         public override string ToString()//переопределяем метод ToString()
         {

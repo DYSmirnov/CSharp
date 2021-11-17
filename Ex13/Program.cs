@@ -6,7 +6,10 @@ namespace Ex13
     {
         static void Main(string[] args)
         {
-            Book; 
+            Book WarAndPeace = new Book { Title = "War And Peace" } ;
+            Console.WriteLine(WarAndPeace);
+            WarAndPeace.IncreaseEditionNumber();
+            Console.WriteLine(WarAndPeace);
         }
     }
 }
